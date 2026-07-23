@@ -1,0 +1,14 @@
+name: public-artifact
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "public-marker: ok" > pub.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-art
+          path: pub.txt

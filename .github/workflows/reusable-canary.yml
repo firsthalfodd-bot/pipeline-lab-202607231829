@@ -1,0 +1,20 @@
+name: Reusable canary
+on:
+  workflow_call:
+    secrets:
+      MAYBE_SECRET:
+        required: false
+    inputs:
+      message:
+        type: string
+        required: false
+        default: "hello"
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "input=${{ inputs.message }}"
+          echo "secret_len=${#MAYBE_SECRET}"
+        env:
+          MAYBE_SECRET: ${{ secrets.MAYBE_SECRET }}

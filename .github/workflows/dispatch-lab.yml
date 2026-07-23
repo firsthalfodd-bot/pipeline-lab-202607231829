@@ -1,0 +1,15 @@
+name: dispatch-lab
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: payload
+        required: false
+        default: none
+  repository_dispatch:
+    types: [lab_ping]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "payload=${{ github.event.inputs.payload || github.event.action }}"
